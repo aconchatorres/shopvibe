@@ -67,35 +67,37 @@
         <!-- Contenido de pagina con ajuste de centrado -->
         <div class="contenido">
             <br>
-            <div>
+            <div class="headerContent">
 			    <!-- Logo eBay -->
                 <router-link to="/">
-                    <div class="ui small image">
-				        <img src="../assets/imagenes/basic_trans.png" width="75%">
-			        </div>
+                    <div class="imagenLogo">
+                        <img src="../assets/imagenes/logoCompleto.png" width="70%">
+                    </div>
                 </router-link>
 
 			    <!-- Busqueda (input, boton, icono) -->
-			    <div class="ui left icon action input">
-				    <i class="search icon"></i>
-                    <!-- Input de busqueda -->
-				    <!-- <input placeholder="Search for anything" type="text" size="83" v-model="userData.name"> -->
-				    <input placeholder="Search for anything" type="text" size="65"  v-model="searchInput">
-				    <!-- Dropdown categorias -->
-                    <div class="dropdownCatBack">
-                        <select name="origin" id="origin" class="dropdownCat" v-model="categoryFilter">
-                            <!-- Items de categorias -->
-                            <option v-for ="category in categoriesCookie" :key="category" :value="category"> {{ category }} </option>
-                        </select>
+                <div class="barraBusqueda">
+                    <div class="ui left icon action input">
+                        <i class="search icon"></i>
+                        <!-- Input de busqueda -->
+                        <!-- <input placeholder="Search for anything" type="text" size="83" v-model="userData.name"> -->
+                        <input placeholder="Search for anything" type="text" size="62"  v-model="searchInput">
+                        <!-- Dropdown categorias -->
+                        <div class="dropdownCatBack">
+                            <select name="origin" id="origin" class="dropdownCat" v-model="categoryFilter">
+                                <!-- Items de categorias -->
+                                <option v-for ="category in categoriesCookie" :key="category" :value="category"> {{ category }} </option>
+                            </select>
+                        </div>
+                        <!-- <select name="origin" id="origin" class="dropdownCat" v-model="typeAuction">
+                            Items de categorias
+                                <option value="Type">Type</option>
+                                <option value="Both">Both</option>
+                                <option value="true">Auction</option>
+                                <option value="false">Buy Now</option>
+                        </select> -->
+                        <div class="ui red submit button" v-on:click.prevent="searchProduct(searchInput, categoryFilter, typeAuction)">Search</div>
                     </div>
-                    <select name="origin" id="origin" class="dropdownCat" v-model="typeAuction">
-                            <!-- Items de categorias -->
-                             <option value="Type">Type</option>
-                             <option value="Both">Both</option>
-                             <option value="true">Auction</option>
-                             <option value="false">Buy Now</option>
-                        </select>
-                    <div class="ui blue submit button" v-on:click.prevent="searchProduct(searchInput, categoryFilter, typeAuction)">Search</div>
                 </div>
             </div>
         </div>
@@ -113,7 +115,7 @@
 
 
 <script>
-var urlServer = 'http://ec2-18-219-200-51.us-east-2.compute.amazonaws.com:5007';
+var urlServer = 'http://ec2-18-191-128-123.us-east-2.compute.amazonaws.com:5005';
 export default {
   name: 'HeaderBar',
   data(){
@@ -202,5 +204,19 @@ export default {
         /* background: red; */
         display: inline-block
 
+    }
+    .imagenLogo {
+        display: inline-block;
+        margin-right: -70px;
+    }
+    .headerContent{
+        /* padding: 10px; */
+        height: 67px;
+        margin-bottom: 20px;
+    }
+    .barraBusqueda {
+        display: inline-block;
+        position: relative;
+        top: -20px;
     }
 </style>

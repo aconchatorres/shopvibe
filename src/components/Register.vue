@@ -3,15 +3,15 @@
     <div class="ui middle aligned center aligned grid">
         <!-- Logo eBay -->
         <router-link to="/">
-          <div class="ui small image">
-  				  <img to="/" src="../assets/imagenes/basic_trans.png" width="100%">
-  			  </div>
+          <!-- <div class="ui small image"> -->
+  				  <img to="/" src="../assets/imagenes/logoCompleto.png" width="90%">
+  			  <!-- </div> -->
         </router-link>
         </div>
 
         <div class="ui middle aligned center aligned grid">
             <div class="column">
-                <h2 class="ui blue image header">
+                <h2 class="ui red image header">
                     <div class="content">
                         Register your account
                     </div>
@@ -63,7 +63,7 @@
                         <div class="field">
                             <div class="ui left icon input">
                                 <i class="birthday cake icon"></i>
-                                <input type="text" name="birthday" placeholder="YYYY-MM-DD" v-model="userData.birthdate">
+                                <input type="text" name="birthday" placeholder="DD/MM/YYYY" v-model="userData.birthdate">
                             </div>
                         </div>
 
@@ -90,7 +90,7 @@
                                 <input type="password" name="password" placeholder="Password" v-model="userData.password">
                             </div>
                         </div>
-                        <div class="ui fluid large blue submit button" v-on:click.prevent="userRegister">Register</div>
+                        <div class="ui fluid large red submit button" v-on:click.prevent="userRegister">Register</div>
                     </div>
 
                     <div class="ui error message"></div>
@@ -113,13 +113,13 @@
       <input type="text" placeholder="DD/MM/YYYY" v-model="userData.birthdate">
       <input type="text" placeholder="Gender" v-model="userData.gender">
       <input type="text" placeholder="Email" v-model="userData.email">
-      <button v-on:click.prevent="userRegister">Register</button>
-      <button v-on:click.prevent="test">Test</button> -->
+      <button v-on:click.prevent="userRegister">Register</button> -->
+      <!-- <button v-on:click.prevent="test">Test</button> -->
   </div>
 </template>
 
 <script>
-var urlServer = 'http://ec2-18-219-200-51.us-east-2.compute.amazonaws.com:5007';
+var urlServer = 'http://ec2-18-191-128-123.us-east-2.compute.amazonaws.com:5005';
 
 export default {
   name: 'Register',
@@ -159,7 +159,13 @@ export default {
         setTimeout(() => this.$router.push('/'), 500);
       },
       test(){
-
+          console.log('company',this.userData.company);
+          console.log('name',this.userData.name);
+          console.log('username',this.userData.username);
+          console.log('password',this.userData.password);
+          console.log('birthdate',this.userData.birthdate);
+          console.log('gender',this.userData.gender);
+          console.log('email',this.userData.email);
       }
   },
   created(){

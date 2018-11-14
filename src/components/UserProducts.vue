@@ -1,7 +1,7 @@
 <template>
     <div class="UserProducts.vue">
         <h3>My Products</h3>
-        <button class="ui right floated basic blue button" v-on:click.prevent="gotoNewProduct">New Product</button>
+        <button class="ui right floated basic blue button" v-on:click.prevent="checkOrigins">New Product</button>
         <div v-if="productsUser.length != 0">
             <br>
             <br>
@@ -75,7 +75,7 @@
 
 <script>
 
-var urlServer = 'http://ec2-18-219-200-51.us-east-2.compute.amazonaws.com:5007';
+var urlServer = 'http://ec2-18-191-128-123.us-east-2.compute.amazonaws.com:5005';
 export default {
     name: 'userProducts',
     data(){
@@ -86,7 +86,8 @@ export default {
                 id: '',
                 secret: '',
                 expire_at: '',
-                name: ''
+                name: '',
+                hasOrigins: false
             },
         }
     },
@@ -96,7 +97,7 @@ export default {
                 this.tokenExists = false;
             }else{
                 this.tokenExists = true;
-                //   console.log("COOKIE: " + this.$cookie.get('secret'));
+                console.log("COOKIE: " + this.$cookie.get('secret'));
                 var userInfo = JSON.parse(this.$cookie.get('secret'));
                 this.id = userInfo.user_id;
                 this.secret = userInfo.secret;
@@ -120,8 +121,25 @@ export default {
                 }
             }
         },
-        gotoNewProduct(){
-            this.$router.push('/newProduct');
+        gotoNewProduct() {
+            if (this.hasOrigins) {
+                this.$router.push('/newProduct');
+            }else{
+                alert("Please create a new origin first.");
+            }
+        },
+        checkOrigins(){
+            this.$http.get((urlServer + '/origins'), {headers: {'Authorization': 'Token token=' + this.secret}})
+            .then(function(response){
+                // console.log('ORIGINS PRINT: ' + response.data);
+                if (response.data != '') {
+                    this.hasOrigins = true;
+                }
+            }),
+            (err) => {
+                console.log("Err", err);
+            };
+            setTimeout(() => this.gotoNewProduct(), 500);
         },
         gotoProductDetails(productid){
             this.$router.push({name: 'product', params: { pId: productid } });

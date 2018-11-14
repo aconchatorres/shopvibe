@@ -42,7 +42,7 @@
                         <button class="ui blue button" v-on:click.prevent="gotoUserDetails(user.id)">Details</button>
                     </div>
                     <div class="btnsAdmin">
-                        <div v-if="user.blocked_user === null">
+                        <div v-if="user.block === null">
                             <div v-if="user.role === 'admin'">
                                 <button class="ui disabled red button">Block</button>
                                 <p>(Admin User)</p>
@@ -60,11 +60,12 @@
             </div>
             <hr>
         </div>
+        <!-- <button class="ui blue button" v-on:click.prevent="test()">TEST</button> -->
     </div>
 </template>
 
 <script>
-var urlServer = 'http://ec2-18-219-200-51.us-east-2.compute.amazonaws.com:5007';
+var urlServer = 'http://ec2-18-191-128-123.us-east-2.compute.amazonaws.com:5005';
 
 export default {
     name: 'AdminUsers',
@@ -122,6 +123,9 @@ export default {
                 console.log("Err", err);
             });
             setTimeout(() => location.reload(), 500);
+        },
+        test() {
+            console.log(this.users[1].block)
         }
     },
     created(){

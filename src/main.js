@@ -3,6 +3,7 @@ import App from './App.vue'
 import VueResource from 'vue-resource'
 import router from './router'
 import VueCookie from 'vue-cookie'
+import vueHeadful from 'vue-headful';
 
 import SuiVue from 'semantic-ui-vue';
 import 'semantic-ui-css/semantic.min.css';
@@ -24,6 +25,7 @@ import 'semantic-ui-css/semantic.min.css';
 Vue.use(SuiVue);
 Vue.use(VueCookie);
 Vue.use(VueResource);
+Vue.component('vue-headful', vueHeadful);
 Vue.config.productionTip = false
 
 new Vue({

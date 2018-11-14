@@ -3,13 +3,13 @@
         <div class="ui segment">
             <div class="footerContent">
                 <div class="ui centered grid">
-                    <b>Created by: </b><p>Andrés Concha & Maximiliam García</p>
+                    <b>Created by: </b><p>John D. Barbosa, Andrés Concha, Lina Escobar & Sebastián Andrades</p>
                 </div>
                 <br>
                 <br>
                 <br>
                 <div class="ui centered grid">
-                    <p>Universidad del Norte - Bases de Datos 2018</p>
+                    <p>Universidad del Norte - Diseño de Software 2018</p>
                 </div>
             </div>
         </div>

@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <vue-headful
+            title="Shopvibe"
+        />
     <!-- <HeaderBar></HeaderBar> -->
       <!-- <link type="text/css" rel="stylesheet" href="./assets/css/bootstrap.min.css"/>
       <link type="text/css" rel="stylesheet" href="./assets/css/slick.css"/>

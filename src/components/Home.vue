@@ -29,7 +29,7 @@
     						<router-link :to="{name: 'product', params: { pId: product.id } }"> {{ product.name }} </router-link>
 					    </h2>
 					    <p>Category: {{ productsCategories[index] }}</p>
-                        <div v-if="product.is_auction == false">
+                        <div v-if="product.is_used == false">
                             <p>Brand new</p>
                         </div>
                         <div v-else>
@@ -95,7 +95,7 @@
 <script>
 import HeaderBar from './HeaderBar.vue'
 
-var urlServer = 'http://ec2-18-219-200-51.us-east-2.compute.amazonaws.com:5007';
+var urlServer = 'http://ec2-18-191-128-123.us-east-2.compute.amazonaws.com:5005';
 export default {
   name: 'Home',
   components: {
@@ -127,8 +127,8 @@ export default {
         this.$http.get(urlServer + '/products').then(function(response){
             this.products = response.data.slice().reverse();
         })
-        setTimeout(() => this.loadLastBids(), 500);
-        setTimeout(() => this.setCategories(), 600);
+        // setTimeout(() => this.loadLastBids(), 500);
+        // setTimeout(() => this.setCategories(), 600);
     },
     checkToken(){
       if (this.$cookie.get('secret') == null){
@@ -161,27 +161,27 @@ export default {
         this.$cookie.set('cart', JSON.stringify(this.cart), 1);
         console.log(this.$cookie.get('cart'));
     },
-    loadLastBids(){
-        var i;
-        var bidsValues;
-        for (i = 0; i < this.products.length; i++) {
-            var product = this.$data.products[i];
-            // console.log('PRODUCT: ' + product);
-            var bids = product.bids;
-            // console.log('BIDS: ' + bids);
-            var lastIndex = bids.length;
-            // console.log('LASTINDEX: ' + lastIndex);
-            if (lastIndex != '0') {
-                var lastBid = bids[lastIndex - 1];
-                // console.log('LAST BID: ' + lastBid);
-                var lastBidValue = lastBid.bid;
-                // console.log('LAST BID VALUE: ' + lastBidValue);
-                this.lastBid.push(lastBidValue);
-            } else {
-                this.lastBid.push(null);
-            }
-        }
-    },
+    // loadLastBids(){
+    //     var i;
+    //     var bidsValues;
+    //     for (i = 0; i < this.products.length; i++) {
+    //         var product = this.$data.products[i];
+    //         // console.log('PRODUCT: ' + product);
+    //         var bids = product.bids;
+    //         // console.log('BIDS: ' + bids);
+    //         var lastIndex = bids.length;
+    //         // console.log('LASTINDEX: ' + lastIndex);
+    //         if (lastIndex != '0') {
+    //             var lastBid = bids[lastIndex - 1];
+    //             // console.log('LAST BID: ' + lastBid);
+    //             var lastBidValue = lastBid.bid;
+    //             // console.log('LAST BID VALUE: ' + lastBidValue);
+    //             this.lastBid.push(lastBidValue);
+    //         } else {
+    //             this.lastBid.push(null);
+    //         }
+    //     }
+    // },
     loadCategories(){
         this.categoriesCookie = JSON.parse(this.$cookie.get('categories'));
         this.categoriesServerCookie = JSON.parse(this.$cookie.get('categoriesServer'));

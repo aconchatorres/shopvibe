@@ -126,12 +126,12 @@
                 </div>
                 <div v-if="uid == product.user.id">
                   <div class="buttonMargin">
-                    <button class="ui disabled blue button" v-on:click.prevent="placeBid">Place Bid</button>
+                    <button class="ui disabled red button" v-on:click.prevent="placeBid">Place Bid</button>
                   </div>
                 </div>
                 <div v-else>
                   <div class="buttonMargin">
-                    <button class="ui blue button" v-on:click.prevent="placeBid">Place Bid</button>
+                    <button class="ui red button" v-on:click.prevent="placeBid">Place Bid</button>
                   </div>
                 </div>
               </div>
@@ -139,12 +139,12 @@
               <div v-else>
                   <div v-if="inCart || uid == product.user.id">
                     <div class="buttonMargin2">
-                      <button class="ui disabled blue button" v-on:click.prevent="addToCart($route.params.pId)">Add to Cart</button>
+                      <button class="ui disabled red button" v-on:click.prevent="addToCart($route.params.pId)">Add to Cart</button>
                     </div>
                   </div>
                   <div v-else>
                     <div class="buttonMargin2">
-                      <button class="ui blue button" v-on:click.prevent="addToCart($route.params.pId)">Add to Cart</button>
+                      <button class="ui red button" v-on:click.prevent="addToCart($route.params.pId)">Add to Cart</button>
                     </div>
                   </div>
               </div>
@@ -273,7 +273,7 @@
 <script>
 import HeaderBar from './HeaderBar.vue'
 
-var urlServer = 'http://ec2-18-219-200-51.us-east-2.compute.amazonaws.com:5007';
+var urlServer = 'http://ec2-18-191-128-123.us-east-2.compute.amazonaws.com:5005';
 export default {
   name: 'Product',
   components: {

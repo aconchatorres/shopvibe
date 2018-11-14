@@ -46,7 +46,7 @@
                     <p class="p2">Stock:</p>
                     <p class="p2">Price:</p>
                     <p class="p2">Used:</p>
-                    <p class="p2">Auction:</p>
+                    <!-- <p class="p2">Auction:</p> -->
                 </div>
 
                 <div class="four wide column">
@@ -69,9 +69,9 @@
                     <div class="checks">
                         <input type="checkbox" name="checkbox_is_used" v-model="productData.is_used">
                     </div>
-                    <div>
+                    <!-- <div>
                         <input type="checkbox" name="checkbox_is_auction" v-model="productData.is_auction">
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -135,7 +135,7 @@
 import axios from 'axios';
 import HeaderBar from './HeaderBar.vue';
 
-var urlServer = 'http://ec2-18-219-200-51.us-east-2.compute.amazonaws.com:5007';
+var urlServer = 'http://ec2-18-191-128-123.us-east-2.compute.amazonaws.com:5005';
 export default {
     name: 'newProduct',
     components: {

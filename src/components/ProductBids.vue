@@ -79,7 +79,7 @@
 <script>
 import HeaderBar from './HeaderBar.vue'
 
-var urlServer = 'http://ec2-18-219-200-51.us-east-2.compute.amazonaws.com:5007';
+var urlServer = 'http://ec2-18-191-128-123.us-east-2.compute.amazonaws.com:5005';
 export default {
     name: 'productBids',
     components: {
