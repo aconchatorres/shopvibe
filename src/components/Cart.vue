@@ -72,9 +72,10 @@
 </template>
 
 <script>
+import axios from 'axios';
 import HeaderBar from './HeaderBar.vue'
 
-var urlServer = 'http://ec2-18-191-128-123.us-east-2.compute.amazonaws.com:5005';
+var urlServer = 'https://disenosback.ddns.net:2003';
 export default {
   name: 'Cart',
   components: {
@@ -112,40 +113,42 @@ export default {
           this.nameOfUser = userInfo.name;
       }
     },
-      loadCart(){
-          if (JSON.parse(this.$cookie.get('cart')) != null) {
-        this.cart = JSON.parse(this.$cookie.get('cart'));
-        var i;
-        for (i = 0; i < this.cart.length; i++) {
-            var productID = this.cart[i];
-            this.$http.get(urlServer + '/products/' + productID).then(function(response){
-                var idServer = response.data.id;
-                if (response.data.cover != null) {
-                    var coverServer = response.data.cover.url;
-                } else {
-                    var coverServer = null;
-                }
-                var nameServer = response.data.name;
-                var descriptionServer = response.data.description;
-                var stockServer = response.data.stock;
-                var priceServer = response.data.price;
-                var product = {
-                    id: idServer, 
-                    cover: coverServer, 
-                    name: nameServer, 
-                    description: descriptionServer, 
-                    stock: stockServer, 
-                    price: priceServer
-                };
-                this.cartProducts.push(product);
-            })
-        }
+    loadCart(){
+        if (JSON.parse(this.$cookie.get('cart')) != null) {
+            this.cart = JSON.parse(this.$cookie.get('cart'));
+            var i;
+            for (i = 0; i < this.cart.length; i++) {
+                var productID = this.cart[i];
+                this.$http.get(urlServer + '/products/' + productID).then(function(response){
+                    var idServer = response.data.id;
+                    if (response.data.cover != null) {
+                        var coverServer = response.data.cover.url;
+                    } else {
+                        var coverServer = null;
+                    }
+                    var nameServer = response.data.name;
+                    var descriptionServer = response.data.description;
+                    var stockServer = response.data.stock;
+                    var priceServer = response.data.price;
+                    var product = {
+                        id: idServer, 
+                        cover: coverServer, 
+                        name: nameServer, 
+                        description: descriptionServer, 
+                        stock: stockServer, 
+                        price: priceServer
+                    };
+                    this.cartProducts.push(product);
+                })
+            }  
         } 
       },
       buyProduct(productid, quantity, destiny){
-        //   console.log('productid:',productid);
-        //   console.log('quantity:',quantity);
-        //   console.log('destiny:',destiny);
+        console.log('productid: ',productid);
+        console.log('quantity: ',quantity);
+        console.log('destiny: ',destiny);
+        console.log('secret: ',this.secret);
+
         this.$http.post((urlServer + '/purchases'), {headers: {'Authorization': 'Token token=' + this.secret}} ,{
             product_id: productid,
             destiny: destiny,
@@ -157,7 +160,6 @@ export default {
           console.log("Err", err);
         }
         );
-
 
         // setTimeout(() => 
         //     this.remove(productid),

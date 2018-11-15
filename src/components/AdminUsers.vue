@@ -65,7 +65,7 @@
 </template>
 
 <script>
-var urlServer = 'http://ec2-18-191-128-123.us-east-2.compute.amazonaws.com:5005';
+var urlServer = 'https://disenosback.ddns.net:2003';
 
 export default {
     name: 'AdminUsers',

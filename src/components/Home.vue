@@ -95,7 +95,7 @@
 <script>
 import HeaderBar from './HeaderBar.vue'
 
-var urlServer = 'http://ec2-18-191-128-123.us-east-2.compute.amazonaws.com:5005';
+var urlServer = 'https://disenosback.ddns.net:2003';
 export default {
   name: 'Home',
   components: {
@@ -128,14 +128,14 @@ export default {
             this.products = response.data.slice().reverse();
         })
         // setTimeout(() => this.loadLastBids(), 500);
-        // setTimeout(() => this.setCategories(), 600);
+        setTimeout(() => this.setCategories(), 600);
     },
     checkToken(){
       if (this.$cookie.get('secret') == null){
           this.tokenExists = false;
       }else{
           this.tokenExists = true;
-          console.log("COOKIE: " + this.$cookie.get('secret'));
+        //   console.log("COOKIE: " + this.$cookie.get('secret'));
           var userInfo = JSON.parse(this.$cookie.get('secret'));
           this.id = userInfo.user_id;
           this.secret = userInfo.secret;
@@ -191,6 +191,7 @@ export default {
         for (i = 0; i < this.products.length; i++) {
             var product = this.$data.products[i];
             var catFilter = product.category;
+            // console.log('product.category',product.category);
             var index = this.categoriesServerCookie.indexOf(catFilter);
             var realCat = this.categoriesCookie[index];
             this.productsCategories.push(realCat);
@@ -205,13 +206,6 @@ export default {
       this.checkToken();
       this.loadCategories();
       this.loadCart();
-      if(this.$options.name == 'Home'){
-        //   console.log('Esta en la pagina de home')
-      }else{
-        //   console.log('Esta no es la pagina de home')
-      }
-    //   console.log('COOKIE CART: ');
-    //   console.log(this.$cookie.get('cart'));
   }
 }
 </script>
