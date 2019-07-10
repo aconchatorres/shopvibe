@@ -149,17 +149,103 @@ export default {
         console.log('destiny: ',destiny);
         console.log('secret: ',this.secret);
 
-        this.$http.post((urlServer + '/purchases'), {headers: {'Authorization': 'Token token=' + this.secret}} ,{
-            product_id: productid,
-            destiny: destiny,
-            quantity: quantity
-        }).then(response => response.json())
+        // axios.post((urlServer + '/purchases'), {
+        //     product_id: productid,
+        //     destiny: destiny,
+        //     quantity: quantity
+        // }, {headers: {'Authorization': 'Token token=' + this.secret}})
+        // .then(function(response){
+        //     console.log(response)
+        //     // setTimeout(() => this.$router.push('/'), 500);
+        // },
+        // (err) => {
+        //     console.log("Err", err);
+        // })
+
+        // this.$http.post(urlServer + '/purchases', {body: {
+        //     product_id: productid,
+        //     destiny: destiny,
+        //     quantity: quantity}, 
+        // headers: {'Authorization': 'Token token=' + this.secret}}).then(response => {
+        //     console.log(response);
+        // }, (err) => {
+        //     console.log("Err", err);
+        // });
+
+        // this.$http.post((urlServer + '/purchases'),{
+        //     product_id: productid,
+        //     destiny: destiny,
+        //     quantity: quantity
+        // }
+        // , {headers: {'Authorization': 'Token token=' + this.secret}})
+        // .then(function(response){
+        //     console.log(response);
+        //     // setTimeout(() => this.$router.push('/'), 500);
+        // },
+        // (err) => {
+        //     console.log("Err", err);
+        // }
+        // );
+        
+
+
+        // SIRVE CON ERROR 422
+        // this.$http.post((urlServer + '/purchases'), {headers: {'Authorization': 'Token token=' + this.secret}} ,{
+        //     product_id: productid,
+        //     destiny: destiny,
+        //     quantity: quantity
+        // }).then(response => response.json())
+        // .then(function(json){
+        // },
+        // (err) => {
+        //   console.log("Err", err);
+        // }
+        // );
+
+
+
+        // this.$http({method: 'POST', url: urlServer + '/purchases', headers: {
+        // Authorization: 'Token token=' + this.secret}, body: {
+        //     product_id: productid,
+        //     destiny: destiny,
+        //     quantity: quantity
+        // }
+        // }).then(response => response.json())
+        // .then(function(json){
+        // },
+        // (err) => {
+        //   console.log("Err", err);
+        // }
+        // );
+
+
+        // TESSTTTT
+        var arrayproducts = []
+        var product1 = {
+            'product_id': productid,
+            'destiny': destiny,
+            'quantity': quantity
+        }
+        arrayproducts.push(product1);
+        this.$http.post(urlServer + '/purchases', {arrayproducts}, {headers: {'Authorization': 'Token token=' + this.secret}}).then(response => response.json())
         .then(function(json){
         },
         (err) => {
           console.log("Err", err);
         }
         );
+
+        // this.$http.post((urlServer + '/purchases'), {
+        //     product_id: productid,
+        //     destiny: destiny,
+        //     quantity: quantity
+        // }, {headers: {'Authorization': 'Token token=' + this.secret}}).then(response => response.json())
+        // .then(function(json){
+        // },
+        // (err) => {
+        //   console.log("Err", err);
+        // }
+        // );
 
         // setTimeout(() => 
         //     this.remove(productid),
